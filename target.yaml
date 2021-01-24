@@ -1,0 +1,20 @@
+end: "<start><inside>\nend\n"
+if: "if(<bool>) then<end>"
+while: while(<bool>) do<end>
+elif: elseif(<bool>) then<end>
+if_else: |
+  if(<bool>) then<statements>
+  <tab>else<estatements> 
+elif_else: |
+  elseif(<bool>) then<statements>
+  <tab>else<estatements> 
+shorthand: <var>= <var><op><res>
+not: ~=
+for_loop: "for <var_name> = <list> do<statements>\nend\n"
+require: require("<module>")
+chk: assert(<bool>,<message>)
+local: local <var><end>
+forit: "for <var_name> in <lst> do<statements>\nend\n"
+until: |
+  repeat<statements>
+  until <bool>

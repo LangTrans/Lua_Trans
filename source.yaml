@@ -1,0 +1,55 @@
+forit:
+  regex: ifor (.+?) in (.+):<i1>4<i2>
+  tokens: [var_name,lst,statements]
+  statements:
+    replace: [["\n$"]]
+for_loop:
+  regex: for (.+?) in (.+):<i1>4<i2>
+  tokens: [var_name,list,statements]
+  list:
+    replace: [["\\.\\.",","]]
+  statements:
+    replace: [["\n$"]]
+end:
+  regex: (.+):<i1>3<i2>
+  tokens: [start,inside]
+  inside:
+    replace: [["\n$"]]
+elif:
+  regex: "elif ([^:]+):$"
+  tokens: [bool,end]
+if:
+  regex: "if ([^:]+):$"
+  tokens: [bool,end]
+while:
+  regex: "while ([^:]+):$"
+  tokens: [bool,end]
+shorthand:
+  regex: ([A-Za-z0-9_ ]+)([+-/\*])=(.+)
+  tokens: [var,op,res]
+not:
+  regex: "!="
+  tokens: []
+require:
+  regex: import (.+)$
+  tokens: [module]
+chk:
+  regex: chk (.+),(.+)$
+  tokens: [bool,message]
+local:
+  regex: "!<var>(\\s*=)"
+  tokens: [var,end]
+  loc:
+    replace: [["!","local "]]
+until:
+  regex: until (.+)<i1>3<i2>
+  tokens: [bool,statements]
+  statements:
+    replace: [["\n$"]]
+settings:
+  loop: True
+  looplimit: 2
+  variables:
+    i1: "(\n(\t+?).*(?:(?:\n\\"
+    i2: ".*)*\n*)*)"
+    var: ([A-Za-z0-9_]+)
