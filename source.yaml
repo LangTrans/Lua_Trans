@@ -47,8 +47,6 @@ until:
   statements:
     replace: [["\n$"]]
 settings:
-  loop: True
-  looplimit: 2
   variables:
     i1: "(\n(\t+?).*(?:(?:\n\\"
     i2: ".*)*\n*)*)"
